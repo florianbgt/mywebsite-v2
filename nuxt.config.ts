@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   extends: '@nuxt-themes/typography',
 
   target: 'static',
+  ssr: true,
   
   app: {
     head: {
