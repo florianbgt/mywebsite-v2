@@ -15,6 +15,12 @@
                 <div class="text-md">
                     Based in Amsterdam, Netherlands
                 </div>
+                <div class="text-lg mt-2">
+                    Check out 
+                    <NuxtLink to="/posts" class="text-xl font-bold underline">
+                        My Posts
+                    </NuxtLink>
+                </div>
             </div>
             <nuxt-img
                 class="rounded-full shaddow-2xl"

@@ -28,6 +28,11 @@ await useAsyncData(async () => {
 <template>
     <Screen class="bg-dark text-light">
         <div class="min-h-screen w-full max-w-6xl">
+            <div class="text-right text-lg mt-2">
+                <NuxtLink to="/" class="text-xl font-bold underline">
+                    More About Me
+                </NuxtLink>
+            </div>
             <div class="flex flex-col mb-5 mt-5">
                 <label for="search" class="font-bold text-lg mb-2">
                     Search
