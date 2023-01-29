@@ -1,5 +1,5 @@
 <template>
-    <Screen class="bg-primary">
+    <Screen class="bg-dark-secondary">
         <div class="flex flex-col max-w-2xl gap-10">
             <ResumeTimelineEvent
                 title="Fullstack Developer"

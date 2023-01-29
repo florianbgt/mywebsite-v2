@@ -10,9 +10,9 @@ defineProps<{
 </script>
 
 <template>
-    <div class="flex flex-col">
+    <div class="flex flex-col text-light">
         <div class="flex justify-start items-start gap-5">
-            <div class="text-dark text-2xl">
+            <div class="text-2xl">
                 <span class="font-bold">
                     {{ title }}
                 </span>
@@ -20,7 +20,7 @@ defineProps<{
                     at {{ companyName }}
                 </template>
             </div>
-            <div v-if="from || to" class="flex gap-2 text-dark text-lg">
+            <div v-if="from || to" class="flex gap-2 text-lg">
                 <span v-if="from || to">
                     <template v-if="from">
                         from {{ from }}
@@ -34,12 +34,12 @@ defineProps<{
                 </span>
             </div>
         </div>
-        <div class="text-md text-dark">
+        <div class="text-md">
             <slot />
         </div>
         <ul v-if="links" class="mt-3">
             <li v-for="(link, index) in links" :key="index">
-                <a :href="link" target="_blank" class="text-md text-dark underline">
+                <a :href="link" target="_blank" class="text-md underline">
                     {{ link }}
                 </a>
             </li>

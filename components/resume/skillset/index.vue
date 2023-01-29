@@ -1,5 +1,5 @@
 <template>
-    <Screen class="bg-primary">
+    <Screen class="bg-dark-secondary">
         <div class="w-full text-center grid grid-cols-1 md:grid-cols-4 gap-5 max-w-2xl">
             <ResumeSkillsetSkill
                 title="Backend"

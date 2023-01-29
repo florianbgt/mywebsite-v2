@@ -37,6 +37,7 @@ export default defineNuxtConfig({
           'light': '#F9F7F3',
           'dark': '#343330',
           'primary': '#F9A620',
+          'dark-secondary': '#5F5D59'
         },
         fontFamily: {
           roboto: ['Roboto', 'sans-serif'],

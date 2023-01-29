@@ -2,25 +2,31 @@
     <Screen class="bg-dark">
         <div class="flex flex-col gap-2 max-w-2xl text-lg text-light">
             <div>
-                Hi! i am fullstack developer with a strong track record of delivering high-quality software and a passion for problem-solving and outside-the-box thinking.
+                I am an experience full-stack developer with a proven track record of delivering tested, maintainable and performant software.
             </div>
             <div>
-                I have strong fondation in Python and Javascript and I am currently learning Golang.
+                My passion for problem-solving and my ability to think outside the box are what set me apart.
             </div>
             <div>
-                I am able to build a variety of microservices and monolith applications using frameworks such as Django and Flask.
+                I am proficient in Python and Javascript and am always looking to expand my knowledge, currently exploring Golang.
             </div>
             <div>
-                I am also able to deliver web and mobile frontend applications using the latests libraries such as Vue, React and React Native.
+                I have extensive experience building scalable and robust microservices and monolith applications, using frameworks like Django and Flask.
             </div>
             <div>
-                I can also integrate payment provider such as Stripe into complex environment.
+                My expertise extends to creating engaging web and mobile front-end experiences using libraries such as Vue, React and React Native.
             </div>
             <div>
-                Finally, I have experience with AWS sevices and can deploy and host application in a modern, secure and scalable way using ECS, EC2, S3 and RDS.
+                I am also well-versed in integrating payment providers, such as Stripe, into complex environments.
             </div>
             <div>
-                Currently based in Amsterdam 🇳🇱. Feel free to email me if you want to chat! 😀
+                My AWS skills are top-notch, I am able to deploy and host applications in a modern, secure and scalable way using ECS, EC2, S3, and RDS.
+            </div>
+            <div>
+                Based in Amsterdam 🇳🇱, I am ready for new challenges and eager to exceed expectations.
+            </div>
+            <div>
+                If you're seeking a full-stack developer with a confident approach and a passion for delivering exceptional work, please don't hesitate to reach out. 😀
             </div>
         </div>
     </Screen>
