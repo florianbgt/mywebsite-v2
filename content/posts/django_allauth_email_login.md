@@ -5,9 +5,9 @@ image: "django.png"
 writtenBy: "Florian Bigot"
 ---
 
-I love Django and I use it as a backend for most of my projects. However, it uses username as authentication method. While it works great, it is a little bit outdated...
+Django is a great framework for pretty much any major BE project. However, it uses username as authentication method. While it works great, it is a little bit outdated... Let's fix that!
 
-Email authentication would be much better right? Fortunately, there is a easy solution, [Django Allauth](https://django-allauth.readthedocs.io)
+We are going to use [Django Allauth](https://django-allauth.readthedocs.io). This is a great package that allow us to easily setup authentication using email (and much more).
 
 You can find the final source code on [my Github](https://github.com/florianbgt/django-allauth)
 
@@ -39,7 +39,7 @@ If you visit [http://localhost:8000](http://localhost:8000) you should see our d
 
 ## 2) Custom user model
 
-Changing the user model inside a on going project can be very difficult.
+Changing the user model inside a ongoing project can be very difficult.
 
 That is why [Django's documentation](https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#using-a-custom-user-model-when-starting-a-project) highly recommends to setup a custom user model at the beginning of a project.
 
@@ -61,8 +61,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #local		#new
-    'users',		#new
+    #local
+    'users',
 ]
 ...
 ```
@@ -72,14 +72,14 @@ For our custom user model, we simply extend Django default user model:
 ```python
 ### users/models.py
 from django.db import models
-from django.contrib.auth.models import AbstractUser		#new
+from django.contrib.auth.models import AbstractUser
 
 
-class CustomUser(AbstractUser):		#new
-    pass		#new
+class CustomUser(AbstractUser):
+    pass
 ```
 
-We then tell Django to use our custom user model:
+We then tell Django to use that custom user model:
 
 ```python
 ### _project/settings.py
@@ -99,7 +99,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'users.CustomUser'		#new
+AUTH_USER_MODEL = 'users.CustomUser'
 ...
 ```
 
@@ -125,38 +125,38 @@ Let's fix this:
 ```python
 ### users/forms.py
 
-from django.contrib.auth import get_user_model		#new
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm		#new
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-class CustomUserCreationForm(UserCreationForm):		#new
-    class Meta:		#new
-        model = get_user_model()		#new
-        fields = ('email', 'username',)		#new
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = get_user_model()
+        fields = ('email', 'username',)
 
 
-class CustomUserChangeForm(UserChangeForm):		#new
-    class Meta:		#new
-        model = get_user_model()		#new
-        fields = ('email', 'username',)		#new
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = get_user_model()
+        fields = ('email', 'username',)
 ```
 
 ```python
 ### users/admin.py
 
 from django.contrib import admin
-from django.contrib.auth import get_user_model		#new
-from django.contrib.auth.admin import UserAdmin		#new
-from .forms import CustomUserCreationForm, CustomUserChangeForm		#new
+from django.contrib.auth import get_user_model
+from django.contrib.auth.admin import UserAdmin
+from .forms import CustomUserCreationForm, CustomUserChangeForm
 
-CustomUser = get_user_model()		#new
+CustomUser = get_user_model()
 
-class CustomUserAdmin(UserAdmin):		#new
-    add_form = CustomUserCreationForm		#new
-    form = CustomUserChangeForm		#new
-    model = CustomUser		#new
-    list_display = ['email', 'username',]		#new
+class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = CustomUser
+    list_display = ['email', 'username',]
 
-admin.site.register(CustomUser, CustomUserAdmin)		#new
+admin.site.register(CustomUser, CustomUserAdmin)
 ```
 
 We now see the cusotm user model displayed correctly:
@@ -183,7 +183,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #local
     'users',
-    'pages',		#new
+    'pages',
 ]
 ...
 ```
@@ -275,12 +275,12 @@ We also need to tell Django to use this new `templates` directory:
 ### _project/settings.py
 
 from pathlib import Path
-import os		#new
+import os
 ...
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],		#new
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -299,14 +299,14 @@ We now create our home page view and route:
 
 ```python
 ### pages/views.py
-from django.views.generic import TemplateView       #new
-from django.contrib.auth.mixins import LoginRequiredMixin       #new
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class HomeView(LoginRequiredMixin, TemplateView):       #new
-    template_name="pages/home.html"       #new
+class HomeView(LoginRequiredMixin, TemplateView):
+    template_name="pages/home.html"
 
-    def get_context_data(self):       #new
-        return {'pageTitle': 'Home Page'}       #new
+    def get_context_data(self):
+        return {'pageTitle': 'Home Page'}
 ```
 
 ```bash
@@ -326,11 +326,11 @@ urlpatterns = [
 ```python
 # _project/urls.py
 from django.contrib import admin
-from django.urls import path, include       #new
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('pages.urls')),       #new
+    path('', include('pages.urls')),
 ]
 ```
 
@@ -356,40 +356,40 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.sites',		#new
+    'django.contrib.sites',
     'django.contrib.staticfiles',
     #local
     'users',
     'pages',
     #third party
-    'allauth',		#new
-    'allauth.account',			#new
-    'allauth.socialaccount',		#new
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
-SITE_ID = 1		#new
-ACCOUNT_AUTHENTICATION_METHOD = 'email'		#new
-ACCOUNT_EMAIL_REQUIRED = True		#new
-ACCOUNT_USERNAME_REQUIRED  = False		#new
-ACCOUNT_EMAIL_VERIFICATION = 'none'		#new
-LOGIN_REDIRECT_URL = 'home'     #new
+SITE_ID = 1
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED  = False
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+LOGIN_REDIRECT_URL = 'home'
 ...
-AUTHENTICATION_BACKENDS = [		#new
-    'django.contrib.auth.backends.ModelBackend',		#new
-    'allauth.account.auth_backends.AuthenticationBackend',		#new
-]		#new
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 ...
 ```
 
 ```python
 ### _project/urls.py
 from django.contrib import admin
-from django.urls import path, include		#new
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('pages.urls')),
-    path('accounts/', include('allauth.urls')),		#new
+    path('accounts/', include('allauth.urls')),
 ]
 ```
 
@@ -413,10 +413,10 @@ SITE_ID = 1
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED  = False
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'		#new
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 LOGIN_REDIRECT_URL = 'home'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'		#new
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ...
 ```
 
@@ -456,10 +456,10 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'crispy_forms',     #new
+    'crispy_forms',
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'     #new
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 ...
 ```
 

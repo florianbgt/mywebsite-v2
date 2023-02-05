@@ -300,7 +300,7 @@ Fortunately, Nuxt js support server side code, so it is something we can impleme
 ---
 title: Article 1 title
 description: Article 1 description
-image: 'index.png'      #new
+image: 'index.png'
 ---
 ```
 
@@ -451,7 +451,7 @@ image: 'index.jpeg'
 
 Content of Article 1
 
-<div><blog-img src="index.jpeg" width="100%" height="auto" class="shadow mb-3"/></div>      #new
+<div><blog-img src="index.jpeg" width="100%" height="auto" class="shadow mb-3"/></div>
 ```
 
 ## Conclusion

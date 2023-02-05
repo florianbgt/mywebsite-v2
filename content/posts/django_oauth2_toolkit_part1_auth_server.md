@@ -48,28 +48,28 @@ The first thing we are going to modify is Django user manager. This is where we 
 
 ```python
 ### users/managers.py
-from django.contrib.auth.base_user import BaseUserManager       #new
+from django.contrib.auth.base_user import BaseUserManager
 
 
-class CustomUserManager(BaseUserManager):       #new
-    def create_user(self, email, password, **extra_fields):       #new
-        if not email:       #new
-            raise ValueError('The Email must be set')       #new
-        email = self.normalize_email(email)       #new
-        user = self.model(email=email, **extra_fields)       #new
-        user.set_password(password)       #new
-        user.save()       #new
-        return user       #new
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, password, **extra_fields):
+        if not email:
+            raise ValueError('The Email must be set')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save()
+        return user
 
-    def create_superuser(self, email, password, **extra_fields):       #new
-        extra_fields.setdefault('is_staff', True)       #new
-        extra_fields.setdefault('is_superuser', True)       #new
-        extra_fields.setdefault('is_active', True)       #new
-        if extra_fields.get('is_staff') is not True:       #new
-            raise ValueError('Superuser must have is_staff=True.')       #new
-        if extra_fields.get('is_superuser') is not True:       #new
-            raise ValueError('Superuser must have is_superuser=True.')       #new
-        return self.create_user(email, password, **extra_fields)       #new
+    def create_superuser(self, email, password, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_active', True)
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
+        return self.create_user(email, password, **extra_fields)
 ```
 
 We then define our model. For this, we extend `AbstractUser`.  
@@ -80,42 +80,42 @@ Here i the code below:
 ```python
 ### users/models.py
 from django.db import models
-from django.contrib.auth.models import AbstractUser     #new
-from .managers import CustomUserManager     #new
+from django.contrib.auth.models import AbstractUser
+from .managers import CustomUserManager
 
 
-class CustomUser(AbstractUser):     #new
-    username = None     #new
-    first_name = None       #new
-    last_name = None        #new
-    email = models.EmailField(max_length=50, unique=True)     #new
+class CustomUser(AbstractUser):
+    username = None
+    first_name = None
+    last_name = None 
+    email = models.EmailField(max_length=50, unique=True)
 
-    USERNAME_FIELD = 'email'     #new
+    USERNAME_FIELD = 'email'
 
-    objects = CustomUserManager()       #new
+    objects = CustomUserManager()
 
-    def __str__(self):      #new
-        return self.email       #new
+    def __str__(self):
+        return self.email
 ```
 
 Our custom user will not be shown in the admin by default. Let's fix that by appending `UserCreationForm` and `UserChangeForm`:
 
 ```python
 ### users/forms.py
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm      #new
-from .models import CustomUser      #new
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import CustomUser
 
 
-class CustomUserCreationForm(UserCreationForm):     #new
-    class Meta:     #new
-        model = CustomUser      #new
-        fields = ('email',)     #new
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = CustomUser
+        fields = ('email',)
 
 
-class CustomUserChangeForm(UserChangeForm):     #new
-    class Meta:     #new
-        model = CustomUser      #new
-        fields = ('email',)     #new
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = CustomUser
+        fields = ('email',)
 ```
 
 We can now register these 2 forms and customize the admin page:
@@ -123,33 +123,33 @@ We can now register these 2 forms and customize the admin page:
 ```python
 ### users/admin.py
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin     #new
+from django.contrib.auth.admin import UserAdmin
 
-from .forms import CustomUserCreationForm, CustomUserChangeForm     #new
-from .models import CustomUser     #new
-
-
-class CustomUserAdmin(UserAdmin):     #new
-    add_form = CustomUserCreationForm     #new
-    form = CustomUserChangeForm     #new
-    model = CustomUser     #new
-    list_display = ('email', 'is_staff', 'is_active',)     #new
-    list_filter = ('email', 'is_staff', 'is_active',)     #new
-    fieldsets = (     #new
-        ('Credentials', {'fields': ('email', 'password')}),     #new
-        ('Permissions', {'fields': ('is_staff', 'is_active', 'groups')}),     #new
-    )     #new
-    add_fieldsets = (     #new
-        (None, {     #new
-            'classes': ('wide',),     #new
-            'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active')}     #new
-        ),     #new
-    )     #new
-    search_fields = ('email',)     #new
-    ordering = ('email',)     #new
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .models import CustomUser
 
 
-admin.site.register(CustomUser, CustomUserAdmin)     #new
+class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = CustomUser
+    list_display = ('email', 'is_staff', 'is_active',)
+    list_filter = ('email', 'is_staff', 'is_active',)
+    fieldsets = (
+        ('Credentials', {'fields': ('email', 'password')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active', 'groups')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active')}
+        ),
+    )
+    search_fields = ('email',)
+    ordering = ('email',)
+
+
+admin.site.register(CustomUser, CustomUserAdmin)
 ```
 
 Finally, we add our `users` app and register our `CustomUser` in our settings:
@@ -165,10 +165,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #local
-    'users',        #new
+    'users', 
 ]
 
-AUTH_USER_MODEL = 'users.CustomUser'        #new
+AUTH_USER_MODEL = 'users.CustomUser' 
 ...
 ```
 
@@ -219,31 +219,31 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #local
-    'users',     #new
+    'users',
     #3rd party
-    'rest_framework',     #new
-    'oauth2_provider',      #new
+    'rest_framework',
+    'oauth2_provider',
 ]
 
-AUTH_USER_MODEL = 'users.CustomUser'        #new
+AUTH_USER_MODEL = 'users.CustomUser' 
 
-OAUTH2_PROVIDER = {     #new
-    'SCOPES': {     #new
-        'read': 'Read scope',       #new
-        'write': 'Write scope',     #new
-        'introspection': 'Introspect token scope',     #new
-    }       #new
-}       #new
+OAUTH2_PROVIDER = {
+    'SCOPES': {
+        'read': 'Read scope',
+        'write': 'Write scope',
+        'introspection': 'Introspect token scope',
+    }
+}
 
-REST_FRAMEWORK = {      #new
-    'DEFAULT_AUTHENTICATION_CLASSES': (     #new
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',     #new
-        'rest_framework.authentication.SessionAuthentication',     #new
-    ),     #new
-    'DEFAULT_PERMISSION_CLASSES': (      #new
-        'rest_framework.permissions.IsAuthenticated',      #new
-    )      #new
-}      #new
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
 ```
 
 We then can register Oauth Toolkit in our project urls:
@@ -251,11 +251,11 @@ We then can register Oauth Toolkit in our project urls:
 ```python
 ### _project/urls.py
 from django.contrib import admin
-from django.urls import path, include       #new
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),       #new
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ]
 ```
 
@@ -300,83 +300,83 @@ touch users/serializers.py
 
 ```python
 ### users/serializers.py
-from rest_framework import serializers      #new
-from django.contrib.auth import get_user_model      #new
-from django.contrib.auth.password_validation import validate_password       #new
-from rest_framework.validators import UniqueValidator       #new
+from rest_framework import serializers
+from django.contrib.auth import get_user_model
+from django.contrib.auth.password_validation import validate_password
+from rest_framework.validators import UniqueValidator
 
-User = get_user_model()     #new
-
-
-class SignUpSerializer(serializers.ModelSerializer):     #new
-    email = serializers.EmailField(validators=[UniqueValidator(queryset=User.objects.all())])     #new
-    password = serializers.CharField(write_only=True, validators=[validate_password])     #new
-    password2 = serializers.CharField(write_only=True)     #new
-
-    class Meta:     #new
-        model = User     #new
-        fields = ['email', 'password', 'password2',]     #new
-
-    def validate(self, value):     #new
-        if value['password'] != value['password2']:     #new
-            raise serializers.ValidationError({'password2': 'Password fields did not match'})     #new
-        return value     #new
-
-    def create(self, validated_data):     #new
-        user = User.objects.create(email = validated_data['email'])     #new
-        user.set_password(validated_data['password'])     #new
-        user.save()     #new
-        return user     #new
+User = get_user_model()
 
 
-class PasswordChangeSerializer(serializers.ModelSerializer):        #new
-    password = serializers.CharField(write_only=True, required=True, validators=[validate_password])        #new
-    password2 = serializers.CharField(write_only=True, required=True)       #new
-    old_password = serializers.CharField(write_only=True, required=True)        #new
+class SignUpSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(validators=[UniqueValidator(queryset=User.objects.all())])
+    password = serializers.CharField(write_only=True, validators=[validate_password])
+    password2 = serializers.CharField(write_only=True)
 
-    class Meta:        #new
-        model = User        #new
-        fields = ('old_password', 'password', 'password2')        #new
+    class Meta:
+        model = User
+        fields = ['email', 'password', 'password2',]
 
-    def validate_old_password(self, value):        #new
-        user = self.context['request'].user        #new
-        if not user.check_password(value):        #new
-            raise serializers.ValidationError({'old_password': 'Old password is incorrect'})        #new
-        return value        #new
+    def validate(self, value):
+        if value['password'] != value['password2']:
+            raise serializers.ValidationError({'password2': 'Password fields did not match'})
+        return value
 
-    def validate(self, value):        #new
-        if value['password'] != value['password2']:        #new
-            raise serializers.ValidationError({'password2': 'Password fields did not match'})        #new
-        return value        #new
+    def create(self, validated_data):
+        user = User.objects.create(email = validated_data['email'])
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
 
-    def update(self, instance, validated_data):        #new
-        instance.set_password(validated_data['password'])        #new
-        instance.save()        #new
-        return instance        #new
+
+class PasswordChangeSerializer(serializers.ModelSerializer): 
+    password = serializers.CharField(write_only=True, required=True, validators=[validate_password]) 
+    password2 = serializers.CharField(write_only=True, required=True)
+    old_password = serializers.CharField(write_only=True, required=True) 
+
+    class Meta: 
+        model = User 
+        fields = ('old_password', 'password', 'password2') 
+
+    def validate_old_password(self, value): 
+        user = self.context['request'].user 
+        if not user.check_password(value): 
+            raise serializers.ValidationError({'old_password': 'Old password is incorrect'}) 
+        return value 
+
+    def validate(self, value): 
+        if value['password'] != value['password2']: 
+            raise serializers.ValidationError({'password2': 'Password fields did not match'}) 
+        return value 
+
+    def update(self, instance, validated_data): 
+        instance.set_password(validated_data['password']) 
+        instance.save() 
+        return instance 
 ```
 
 We then create the views:
 
 ```python
 ### users/views.py
-from rest_framework import generics     #new
-from rest_framework.permissions import AllowAny     #new
-from django.contrib.auth import get_user_model     #new
-from .serializers import SignUpSerializer, PasswordChangeSerializer     #new
+from rest_framework import generics
+from rest_framework.permissions import AllowAny
+from django.contrib.auth import get_user_model
+from .serializers import SignUpSerializer, PasswordChangeSerializer
 
-User = get_user_model()     #new
-
-
-class SignUp(generics.CreateAPIView):       #new
-    permission_classes = [AllowAny]       #new
-    serializer_class = SignUpSerializer       #new
+User = get_user_model()
 
 
-class PasswordChange(generics.UpdateAPIView):     #new
-    queryset = User     #new
-    serializer_class = PasswordChangeSerializer     #new
-    def get_object(self):     #new
-        return self.request.user     #new
+class SignUp(generics.CreateAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = SignUpSerializer
+
+
+class PasswordChange(generics.UpdateAPIView):
+    queryset = User
+    serializer_class = PasswordChangeSerializer
+    def get_object(self):
+        return self.request.user
 ```
 
 And finally, we register these 2 views in our urls:
@@ -387,25 +387,25 @@ touch users/urls.py
 
 ```python
 ### users/urls.py
-from django.urls import path        #new
-from .views import SignUp, PasswordChange        #new
+from django.urls import path 
+from .views import SignUp, PasswordChange 
 
 
-urlpatterns = [        #new
+urlpatterns = [ 
     path('signup/', SignUp.as_view()),
-    path('password/', PasswordChange.as_view()),        #new
-]        #new
+    path('password/', PasswordChange.as_view()), 
+] 
 ```
 
 ```python
 ### _project/urls.py
 from django.contrib import admin
-from django.urls import path, include       #new
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),       #new
-    path('users/', include('users.urls'))        #new
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    path('users/', include('users.urls')) 
 ]
 ```
 

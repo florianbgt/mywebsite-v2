@@ -46,99 +46,99 @@ touch users/forms.py
 
 ```python
 ### users/managers.py
-from django.contrib.auth.base_user import BaseUserManager       #new
+from django.contrib.auth.base_user import BaseUserManager
 
 
-class CustomUserManager(BaseUserManager):       #new
-    def create_user(self, email, password, **extra_fields):       #new
-        if not email:       #new
-            raise ValueError('The Email must be set')       #new
-        email = self.normalize_email(email)       #new
-        user = self.model(email=email, **extra_fields)       #new
-        user.set_password(password)       #new
-        user.save()       #new
-        return user       #new
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, password, **extra_fields):
+        if not email:
+            raise ValueError('The Email must be set')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save()
+        return user
 
-    def create_superuser(self, email, password, **extra_fields):       #new
-        extra_fields.setdefault('is_staff', True)       #new
-        extra_fields.setdefault('is_superuser', True)       #new
-        extra_fields.setdefault('is_active', True)       #new
-        if extra_fields.get('is_staff') is not True:       #new
-            raise ValueError('Superuser must have is_staff=True.')       #new
-        if extra_fields.get('is_superuser') is not True:       #new
-            raise ValueError('Superuser must have is_superuser=True.')       #new
-        return self.create_user(email, password, **extra_fields)       #new
+    def create_superuser(self, email, password, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_active', True)
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
+        return self.create_user(email, password, **extra_fields)
 ```
 
 ```python
 ### users/models.py
 from django.db import models
-from django.contrib.auth.models import AbstractUser     #new
-from .managers import CustomUserManager     #new
+from django.contrib.auth.models import AbstractUser
+from .managers import CustomUserManager
 
 
-class CustomUser(AbstractUser):     #new
-    username = None     #new
-    first_name = None       #new
-    last_name = None        #new
-    email = models.EmailField(max_length=50, unique=True)     #new
+class CustomUser(AbstractUser):
+    username = None
+    first_name = None
+    last_name = None
+    email = models.EmailField(max_length=50, unique=True)
 
-    USERNAME_FIELD = 'email'     #new
+    USERNAME_FIELD = 'email'
 
-    objects = CustomUserManager()       #new
+    objects = CustomUserManager()
 
-    def __str__(self):      #new
-        return self.email       #new
+    def __str__(self):
+        return self.email
 ```
 
 ```python
 ### users/forms.py
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm      #new
-from .models import CustomUser      #new
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import CustomUser
 
 
-class CustomUserCreationForm(UserCreationForm):     #new
-    class Meta:     #new
-        model = CustomUser      #new
-        fields = ('email',)     #new
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = CustomUser
+        fields = ('email',)
 
 
-class CustomUserChangeForm(UserChangeForm):     #new
-    class Meta:     #new
-        model = CustomUser      #new
-        fields = ('email',)     #new
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = CustomUser
+        fields = ('email',)
 ```
 
 ```python
 ### users/admin.py
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin     #new
+from django.contrib.auth.admin import UserAdmin
 
-from .forms import CustomUserCreationForm, CustomUserChangeForm     #new
-from .models import CustomUser     #new
-
-
-class CustomUserAdmin(UserAdmin):     #new
-    add_form = CustomUserCreationForm     #new
-    form = CustomUserChangeForm     #new
-    model = CustomUser     #new
-    list_display = ('email', 'is_staff', 'is_active',)     #new
-    list_filter = ('email', 'is_staff', 'is_active',)     #new
-    fieldsets = (     #new
-        ('Credentials', {'fields': ('email', 'password')}),     #new
-        ('Permissions', {'fields': ('is_staff', 'is_active', 'groups')}),     #new
-    )     #new
-    add_fieldsets = (     #new
-        (None, {     #new
-            'classes': ('wide',),     #new
-            'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active')}     #new
-        ),     #new
-    )     #new
-    search_fields = ('email',)     #new
-    ordering = ('email',)     #new
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .models import CustomUser
 
 
-admin.site.register(CustomUser, CustomUserAdmin)     #new
+class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = CustomUser
+    list_display = ('email', 'is_staff', 'is_active',)
+    list_filter = ('email', 'is_staff', 'is_active',)
+    fieldsets = (
+        ('Credentials', {'fields': ('email', 'password')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active', 'groups')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active')}
+        ),
+    )
+    search_fields = ('email',)
+    ordering = ('email',)
+
+
+admin.site.register(CustomUser, CustomUserAdmin)
 ```
 
 ```python
@@ -152,21 +152,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #local
-    'users',        #new
+    'users',
 ]
 
-AUTH_USER_MODEL = 'users.CustomUser'        #new
+AUTH_USER_MODEL = 'users.CustomUser'
 ...
 ```
 
 ```python
 ### _project/urls.py
 from django.contrib import admin
-from django.urls import path, include       #new
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),       #new
+    path('users/', include('users.urls')),
 ]
 ```
 
@@ -204,32 +204,32 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #local
-    'users',     #new
+    'users',
     #3rd party
-    'rest_framework',     #new
-    'oauth2_provider',      #new
+    'rest_framework',
+    'oauth2_provider',
 ]
 
-AUTH_USER_MODEL = 'users.CustomUser'        #new
+AUTH_USER_MODEL = 'users.CustomUser'
 
-OAUTH2_PROVIDER = {     #new
-    'SCOPES': {     #new
-        'read': 'Read scope',       #new
-        'write': 'Write scope',     #new
-    },       #new
-    'RESOURCE_SERVER_INTROSPECTION_URL': 'http://localhost:8000/o/introspect/',     #new
-    'RESOURCE_SERVER_INTROSPECTION_CREDENTIALS': ('rs-id','rs-secret'),     #new
-}       #new
+OAUTH2_PROVIDER = {
+    'SCOPES': {
+        'read': 'Read scope',
+        'write': 'Write scope',
+    },
+    'RESOURCE_SERVER_INTROSPECTION_URL': 'http://localhost:8000/o/introspect/',
+    'RESOURCE_SERVER_INTROSPECTION_CREDENTIALS': ('rs-id','rs-secret'),
+}
 
-REST_FRAMEWORK = {      #new
-    'DEFAULT_AUTHENTICATION_CLASSES': (     #new
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',     #new
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
         'rest_framework.authentication.SessionAuthentication',
-    ),     #new
-    'DEFAULT_PERMISSION_CLASSES': (      #new
-        'rest_framework.permissions.IsAuthenticated',      #new
-    )      #new
-}      #new
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
 ...
 ```
 
@@ -248,28 +248,28 @@ We first start to create 3 simple serializer for each of out views:
 
 ```python
 ### users/serializers.py
-from rest_framework import serializers      #new
+from rest_framework import serializers
 
 
-class SignUpSerializer(serializers.Serializer):      #new
-    email = serializers.EmailField()      #new
-    password = serializers.CharField()      #new
-    password2 = serializers.CharField()      #new
+class SignUpSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField()
+    password2 = serializers.CharField()
 
 
-class TokenSerializer(serializers.Serializer):      #new
-    email = serializers.EmailField()      #new
-    password = serializers.CharField()      #new
+class TokenSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField()
 
 
-class RefreshTokenSerializer(serializers.Serializer):      #new
-    refresh = serializers.EmailField()      #new
+class RefreshTokenSerializer(serializers.Serializer):
+    refresh = serializers.EmailField()
 
 
-class PasswordChangeSerializer(serializers.Serializer):      #new
-    old_password = serializers.CharField()      #new
-    password = serializers.CharField()      #new
-    password2 = serializers.CharField()      #new
+class PasswordChangeSerializer(serializers.Serializer):
+    old_password = serializers.CharField()
+    password = serializers.CharField()
+    password2 = serializers.CharField()
 ```
 
 Then, we setup our views:
@@ -280,103 +280,103 @@ Then, we setup our views:
 
 ```python
 ### users/views.py
-from rest_framework.views import APIView        #new
-from rest_framework.response import Response        #new
-from rest_framework.permissions import AllowAny        #new
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 
-from .serializers import SignUpSerializer, TokenSerializer, RefreshTokenSerializer, PasswordChangeSerializer        #new
+from .serializers import SignUpSerializer, TokenSerializer, RefreshTokenSerializer, PasswordChangeSerializer
 
-import requests        #new
-
-
-class SignUpView(APIView):        #new
-    permission_classes = [AllowAny]        #new
-    serializer_class = SignUpSerializer        #new
-    def post(self, request):        #new
-        response = requests.post(        #new
-            'http://localhost:8000/users/signup/',        #new
-            data={        #new
-                'email': request.data['email'],        #new
-                'password': request.data['password'],        #new
-                'password2': request.data['password2']        #new
-            }        #new
-        )        #new
-        return Response(response.json())        #new
-
-class GetTokenView(APIView):        #new
-    permission_classes = [AllowAny]        #new
-    serializer_class = TokenSerializer        #new
-    def post(self, request):        #new
-        response = requests.post(        #new
-            'http://localhost:8000/o/token/',        #new
-            data={        #new
-                'grant_type': 'password',        #new
-                'username': request.data['email'],        #new
-                'password': request.data['password'],        #new
-                'client_id': 'rs-id',        #new
-                'client_secret': 'rs-secret'        #new
-            }        #new
-        )        #new
-        return Response(response.json())        #new
+import requests
 
 
-class RefreshTokenView(APIView):        #new
-    permission_classes = [AllowAny]        #new
-    serializer_class = RefreshTokenSerializer        #new
-    def post(self, request):        #new
-        response = requests.post(        #new
-            'http://localhost:8000/o/token/',        #new
-            data={        #new
-                'grant_type': 'refresh_token',        #new
-                'refresh_token': request.data['refresh'],        #new
-                'client_id': 'rs-id',        #new
-                'client_secret': 'rs-secret'        #new
-            }        #new
-        )        #new
-        return Response(response.json())        #new
+class SignUpView(APIView):
+    permission_classes = [AllowAny]
+    serializer_class = SignUpSerializer
+    def post(self, request):
+        response = requests.post(
+            'http://localhost:8000/users/signup/',
+            data={
+                'email': request.data['email'],
+                'password': request.data['password'],
+                'password2': request.data['password2']
+            }
+        )
+        return Response(response.json())
+
+class GetTokenView(APIView):
+    permission_classes = [AllowAny]
+    serializer_class = TokenSerializer
+    def post(self, request):
+        response = requests.post(
+            'http://localhost:8000/o/token/',
+            data={
+                'grant_type': 'password',
+                'username': request.data['email'],
+                'password': request.data['password'],
+                'client_id': 'rs-id',
+                'client_secret': 'rs-secret'
+            }
+        )
+        return Response(response.json())
 
 
-class PasswordChangeView(APIView):        #new
-    serializer_class = PasswordChangeSerializer        #new
-    def put(self, request):        #new
-        response = requests.put(        #new
-            'http://localhost:8000/users/password/',        #new
-            headers={        #new
-                'Authorization': request.META.get('HTTP_AUTHORIZATION')        #new
-            },        #new
-            data={        #new
-                'old_password': request.data['old_password'],        #new
-                'password': request.data['password'],        #new
-                'password2': request.data['password2']        #new
-            }        #new
-        )        #new
-        return Response(response.json())        #new
+class RefreshTokenView(APIView):
+    permission_classes = [AllowAny]
+    serializer_class = RefreshTokenSerializer
+    def post(self, request):
+        response = requests.post(
+            'http://localhost:8000/o/token/',
+            data={
+                'grant_type': 'refresh_token',
+                'refresh_token': request.data['refresh'],
+                'client_id': 'rs-id',
+                'client_secret': 'rs-secret'
+            }
+        )
+        return Response(response.json())
+
+
+class PasswordChangeView(APIView):
+    serializer_class = PasswordChangeSerializer
+    def put(self, request):
+        response = requests.put(
+            'http://localhost:8000/users/password/',
+            headers={
+                'Authorization': request.META.get('HTTP_AUTHORIZATION')
+            },
+            data={
+                'old_password': request.data['old_password'],
+                'password': request.data['password'],
+                'password2': request.data['password2']
+            }
+        )
+        return Response(response.json())
 ```
 
 Finally, setup our routes:
 
 ```python
 ### users/urls.py
-from django.urls import path        #new
-from .views import SignUpView, GetTokenView, RefreshTokenView ,PasswordChangeView        #new
+from django.urls import path
+from .views import SignUpView, GetTokenView, RefreshTokenView ,PasswordChangeView
 
 
-urlpatterns = [        #new
-    path('signup/', SignUpView.as_view()),        #new
-    path('token/', GetTokenView.as_view()),        #new
-    path('token/refresh/', RefreshTokenView.as_view()),        #new
-    path('password/', PasswordChangeView.as_view())        #new
-]        #new
+urlpatterns = [
+    path('signup/', SignUpView.as_view()),
+    path('token/', GetTokenView.as_view()),
+    path('token/refresh/', RefreshTokenView.as_view()),
+    path('password/', PasswordChangeView.as_view())
+]
 ```
 
 ```python
 ## _project/urls.py
 from django.contrib import admin
-from django.urls import path, include       #new
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),       #new
+    path('users/', include('users.urls')),
 ]
 ```
 
@@ -424,107 +424,107 @@ touch items/serializers.py
 ```python
 ### items/models.py
 from django.db import models
-from django.contrib.auth import get_user_model        #new
+from django.contrib.auth import get_user_model
 
-User = get_user_model()        #new
+User = get_user_model()
 
 
-class Item(models.Model):        #new
-    name = models.CharField(max_length=50, unique=True)        #new
-    description = models.TextField(max_length=250)        #new
-    price = models.DecimalField(max_digits=14, decimal_places=2)        #new
-    user = models.ForeignKey(User, on_delete=models.CASCADE)        #new
+class Item(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    description = models.TextField(max_length=250)
+    price = models.DecimalField(max_digits=14, decimal_places=2)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    def __str__(self):        #new
-        return self.name        #new
+    def __str__(self):
+        return self.name
 ```
 
 ```python
 ### items/admin.py
-from django.contrib import admin        #new
+from django.contrib import admin
 
-from .models import Item        #new
+from .models import Item
 
 
-class ItemAdmin(admin.ModelAdmin):        #new
-    pass        #new
+class ItemAdmin(admin.ModelAdmin):
+    pass
 
-admin.site.register(Item, ItemAdmin)        #new
+admin.site.register(Item, ItemAdmin)
 ```
 
 ```python
 ### items/serializers.py
 from rest_framework import serializers
-from rest_framework.fields import ReadOnlyField      #new
-from django.contrib.auth import get_user_model      #new
+from rest_framework.fields import ReadOnlyField
+from django.contrib.auth import get_user_model
 
-from .models import Item      #new
+from .models import Item
 
-User = get_user_model()      #new
-
-
-class UserSerializer(serializers.ModelSerializer):      #new
-    class Meta:      #new
-        model = User      #new
-        fields = ['id', 'email']      #new
+User = get_user_model()
 
 
-class ItemSerializer(serializers.ModelSerializer):        #new
-    user = UserSerializer(read_only=True)      #new
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'email']
 
-    class Meta:        #new
-        model = Item        #new
-        fields = ['id', 'name', 'description', 'price', 'user',]        #new
 
-    def create(self, validated_data):      #new
-        item = Item.objects.create(      #new
-            name=validated_data['name'],      #new
-            description=validated_data['description'],      #new
-            price = validated_data['price'],      #new
-            user = self.context['request'].user      #new
-        )      #new
-        return item      #new
+class ItemSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Item
+        fields = ['id', 'name', 'description', 'price', 'user',]
+
+    def create(self, validated_data):
+        item = Item.objects.create(
+            name=validated_data['name'],
+            description=validated_data['description'],
+            price = validated_data['price'],
+            user = self.context['request'].user
+        )
+        return item
 ```
 
 ```python
 ### items/views.py
-from rest_framework import generics     #new
+from rest_framework import generics
 
-from .models import Item     #new
-from .serializers import ItemSerializer     #new
-
-
-class ItemList(generics.ListCreateAPIView):     #new
-    queryset = Item.objects.all()     #new
-    serializer_class = ItemSerializer     #new
+from .models import Item
+from .serializers import ItemSerializer
 
 
-class ItemDetail(generics.RetrieveUpdateDestroyAPIView):     #new
-    queryset = Item.objects.all()     #new
-    serializer_class = ItemSerializer     #new
+class ItemList(generics.ListCreateAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+
+
+class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
 ```
 
 ```python
 ### items/urls.py
-from django.urls import path        #new
-from .views import ItemList, ItemDetail        #new
+from django.urls import path
+from .views import ItemList, ItemDetail
 
 
-urlpatterns = [        #new
-    path('', ItemList.as_view()),        #new
-    path('<pk>/', ItemDetail.as_view()),        #new
-]        #new
+urlpatterns = [
+    path('', ItemList.as_view()),
+    path('<pk>/', ItemDetail.as_view()),
+]
 ```
 
 ```python
 ### _project/urls.py
 from django.contrib import admin
-from django.urls import path, include       #new
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),       #new
-    path('items/', include('items.urls')),        #new
+    path('users/', include('users.urls')),
+    path('items/', include('items.urls')),
 ]
 ```
 
@@ -539,11 +539,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #local
-    'users',     #new
-    'items',     #new
+    'users',
+    'items',
     #3rd party
-    'rest_framework',     #new
-    'oauth2_provider',      #new
+    'rest_framework',
+    'oauth2_provider',
 ]
 ...
 ```

@@ -1,5 +1,5 @@
 ---
-title: Django from sqlite to posgreSQL
+title: Django from sqlite to postgreSQL
 description: Migrate an existing sqlite database to a postgreSQL database
 image: "django.png"
 writtenBy: "Florian Bigot"
@@ -7,14 +7,14 @@ writtenBy: "Florian Bigot"
 
 In this tutorial, we will migrate the default django's sqlite database to a postgreSQL database.
 
-You can find the source code of this article on [my github](https://github.com/florianbgt/Django-sqlite-to-posgreSQL)
+You can find the source code of this article on [my github](https://github.com/florianbgt/Django-sqlite-to-postgreSQL)
 
 ## 1) Setting up our project
 
 I am going to use an existing project from my github. You can do it as well if you do not have an existing project to migrate.
 
 ```bash
-git clone https://github.com/florianbgt/Django-sqlite-to-posgreSQL.git
+git clone https://github.com/florianbgt/Django-sqlite-to-postgreSQL.git
 ```
 
 Then, we can make sure our project is working.
@@ -27,13 +27,13 @@ docker-compose up
 
 Our container should now be up and running. We can go to http://localhost:8000/admin and login using the admin user (username: `admin` and password: `testpass123`).
 
-Once login, you should see some existing reccords on the admin site.
+Once login, you should see some existing records on the admin site.
 
 ![Django admin site with some data](/posts/django-from-sqlite-to-postgresql/django-admin.png)
 
 That is it, we now have a django project using a sqlite database!
 
-## 2) Make a copy of our reccords
+## 2) Make a copy of our records
 
 To migrate our data in the new database, we need first need to dump our data into a json file.
 
@@ -119,8 +119,8 @@ In some niche scenario, the commands we have done in this tutorial will not suff
 
 If you face some problem try to follow this tutorial but replace `python manage.py dumpdata db.json` by `python manage.py dumpdata --exclude=contenttypes --exclude=auth.Permission > datadump.json`.
 
-In my case, this command had worked with a complex django project that I had face problem with while migrating from sqlite to posgreSQL.
+In my case, this command had worked with a complex django project that I had face problem with while migrating from sqlite to postgreSQL.
 
-You can find the source code of this article on [my github](https://github.com/florianbgt/Django-sqlite-to-posgreSQL)
+You can find the source code of this article on [my github](https://github.com/florianbgt/Django-sqlite-to-postgreSQL)
 
 If you have any question or just want to chat, feel free to email me florian.bigot321@gmail.com
