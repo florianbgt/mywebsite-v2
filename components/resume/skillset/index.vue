@@ -8,7 +8,7 @@
                 My passion for problem-solving and my ability to think outside the box are what set me apart.
             </div>
             <div>
-                I am proficient in Python and Javascript and am always looking to expand my knowledge, currently exploring Golang.
+                I am proficient in Python, Golang, Javascript and Typesctipt and am always looking to expand my knowledge.
             </div>
             <div>
                 I have extensive experience building scalable and robust microservices and monolith applications, using frameworks like Django and Flask.

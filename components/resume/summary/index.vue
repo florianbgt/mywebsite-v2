@@ -10,7 +10,7 @@
                     Full stack developer
                 </div>
                 <div class="text-primary text-xl">
-                    Python | Go | Js | Vue | React | Stripe
+                    Python | Go | Js/Ts | Vue | React
                 </div>
                 <div class="text-md">
                     Based in Amsterdam, Netherlands
