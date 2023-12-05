@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const route = useRoute()
+
 const { data } = await useAsyncData(`post-${route.path}`, () => queryContent(route.path).findOne())
 </script>
 
@@ -10,11 +11,11 @@ const { data } = await useAsyncData(`post-${route.path}`, () => queryContent(rou
                 All posts
             </NuxtLink>
             <template v-if="data">
-                <nuxt-img
+                <img
                     class="w-full h-[15rem] object-cover mt-5"
                     :src="
                         'image' in data
-                            ? `${data._path}/${data.image}`
+                            ? `${data.image}`
                             : '/posts/default.png'
                     "
                     alt="Florian Bigot"
@@ -22,7 +23,7 @@ const { data } = await useAsyncData(`post-${route.path}`, () => queryContent(rou
                 <div class="text-3xl text-primary my-2">
                     {{ data.title }}
                 </div>
-                <ContentDoc />
+                <ContentDoc class="prose"/>
             </template>
             
         </div>

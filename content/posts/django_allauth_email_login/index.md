@@ -14,7 +14,6 @@ You can find the final source code on [my Github](https://github.com/florianbgt/
 ## 1) Setting up the project
 
 We start by creating a virtual environment. This will help us to keep our dependencies nice and clean:
-
 ```bash
 mkdir django-allauth
 cd django-allauth
@@ -35,7 +34,7 @@ python manage.py runserver
 
 If you visit [http://localhost:8000](http://localhost:8000) you should see our dev server up and running:
 
-![Django landing page](/posts/django_allauth_email_login/django_success.png)
+![Django landing page](django_success.png)
 
 ## 2) Custom user model
 
@@ -116,7 +115,7 @@ If we create a superuser and check our custom user model in the admin interface,
 python manage.py createsuperuser
 ```
 
-![Django admin missing custom user](/posts/django_allauth_email_login/django_admin.png)
+![Django admin missing custom user](django_admin.png)
 
 That is because we no longer use the default user model. And thus, it is not displayed by default in the admin interface.
 
@@ -161,7 +160,7 @@ admin.site.register(CustomUser, CustomUserAdmin)
 
 We now see the cusotm user model displayed correctly:
 
-![Django admin with custom user](/posts/django_allauth_email_login/django_admin2.png)
+![Django admin with custom user](django_admin2.png)
 
 ## 3) Creating our Homepage
 
@@ -336,7 +335,7 @@ urlpatterns = [
 
 If we visit http://localhost:8000/, we should now see our new home page rendered!
 
-![Home page](/posts/django_allauth_email_login/home.png)
+![Home page](home.png)
 
 ## 4) Switching to Django Allauth
 
@@ -395,11 +394,11 @@ urlpatterns = [
 
 We can now (using email and password) sign up a new user here http://localhost:8000/accounts/signup/, log them in here http://localhost:8000/accounts/login/ and log them out here http://localhost:8000/logout/:
 
-![Signup page](/posts/django_allauth_email_login/allauth_signup.png)
+![Signup page](allauth_signup.png)
 
 You can see here http://localhost:8000/accounts/ the different Allauth urls accessible (with DEBUG=True only):
 
-![Allauth routes](/posts/django_allauth_email_login/allauth_urls.png)
+![Allauth routes](allauth_urls.png)
 
 ## 5) Setting up email verification on signup
 
@@ -422,7 +421,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 If we now sign up a new user **(make sure to enter a valid email)** and go to your console, we should see the confirmation link sent to that user in our console:
 
-![Email in console](/posts/django_allauth_email_login/email.png)
+![Email in console](email.png)
 
 ## 6) Custumizing Allauth templates
 
@@ -529,7 +528,7 @@ endblock title %} {% block content %}
 
 Allauth view should now be rendered with our new style:
 
-![Allauth custom signup template](/posts/django_allauth_email_login/allauth_signup_custom.png)
+![Allauth custom signup template](allauth_signup_custom.png)
 
 If you want to further customize these templates, I highly recommand you check the source code of Allauth to see how these templates are built (link below).
 
