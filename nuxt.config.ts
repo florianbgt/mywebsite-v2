@@ -1,51 +1,33 @@
-// @ts-nocheck
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
-export default defineNuxtConfig({
-  extends: '@nuxt-themes/typography',
+export default defineNuxtConfig({ 
+  extends: '@nuxt-themes/typography', 
+  devtools: { enabled: true },
+  modules: [
+    '@nuxtjs/color-mode',
+    'nuxt-content-assets',
+    '@nuxt/content',
+    '@nuxt/image',
+    '@nuxtjs/tailwindcss',
+    'nuxt-icon',
+  ],
 
-  target: 'static',
-  ssr: true,
-  
-  app: {
-    head: {
-      title: "Florian Bigot",
-      meta: [
-        {name: 'description', content: 'Florian Bigot, software engineer'},
-      ],
-      htmlAttrs: {
-        lang: 'en',
-      }
+  colorMode: {
+    classSuffix: ''
+  },
+
+  content: {    
+    highlight: {
+      theme: {
+        default: 'github-light',
+        dark: 'github-dark',
+        light: 'github-light'
+      },
+      preload: ['bash', 'python', 'javascript', 'typescript', 'vue', 'tsx', 'jsx']
     },
   },
-
-  modules: [
-    '@nuxtjs/i18n',
-    '@nuxtjs/tailwindcss',
-    '@nuxt/image-edge',
-    '@nuxt/content',
-  ],
-
-  buildModules: [
-    '@nuxt/image',
-  ],
-
+  
   tailwindcss: {
-    config: {
-      theme: {
-        colors: {
-          'light': '#F9F7F3',
-          'dark': '#343330',
-          'primary': '#F9A620',
-          'dark-secondary': '#5F5D59'
-        },
-        fontFamily: {
-          roboto: ['Roboto', 'sans-serif'],
-        },
-      },
-      plugins: [],
-    }
+    cssPath: '~/assets/css/tailwind.css',
+    configPath: 'tailwind.config.js',    
   },
-
-  content: {}
 })

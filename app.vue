@@ -1,14 +1,6 @@
-<script setup lang="ts">
-const route = useRoute();
-
-const link = computed(() => {
-  if (route.path === "/") {
-    return {path: "/posts", name: "Posts" };
-  }
-  return {path: "/", name: "Home" };
-});
-</script>
-
-<template>
-  <NuxtPage/>
+<template>  
+  <div class="relative bg-light-background dark:bg-dark-background text-light-on-background dark:text-dark-on-background" >
+    <ModeSwitch Class="fixed top-1 right-5"/>
+    <NuxtPage/>
+  </div>
 </template>

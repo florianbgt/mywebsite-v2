@@ -1,87 +1,91 @@
 <script setup lang="ts">
 import { watch, ref, type Ref } from "vue";
-import { type ParsedContent } from "@nuxt/content/dist/runtime/types";
-
-const search: Ref<string> = ref("");
+import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
 
 const posts: Ref<ParsedContent[]> = ref([]);
+const search: Ref<string> = ref("");
 
-watch(search, async (value) => {
-    fetchPosts(value);
-    posts.value = await fetchPosts(value);
-});
-
-const fetchPosts = async (search: string) => {
-    const posts = await queryContent('/posts/').where({
+const fetchPosts = async () => {
+    const fetchedPosts = await queryContent('posts').where({
         title: {
-            $icontains: search,
-        },
-    }).find()
-    return posts
+            $icontains: search.value
+        }
+    }).find();
+    posts.value = fetchedPosts;
 };
 
+watch(search, async () => {
+    await fetchPosts();
+});
+
 await useAsyncData(async () => {
-    posts.value = await fetchPosts(search.value);
+    await fetchPosts();
 });
 </script>
 
 <template>
-    <Screen class="bg-dark text-light">
-        <div class="min-h-screen w-full max-w-6xl">
-            <div class="text-right text-lg mt-2">
-                <NuxtLink to="/" class="text-xl font-bold underline">
-                    More About Me
-                </NuxtLink>
-            </div>
-            <div class="flex flex-col mb-5 mt-5">
-                <label for="search" class="font-bold text-lg mb-2">
-                    Search
-                </label>
-                <input
-                    id="search"
-                    v-model="search"
-                    type="text"
-                    class="
-                        shadow
-                        appearance-none
-                        border
-                        rounded
-                        w-full
-                        py-2
-                        px-3
-                        text-dark
-                        text-lg
-                        focus:outline
-                        focus:outline-2
-                        focus:outline-offset-0
-                        focus:shadow-outline
-                        focus:outline-primary
-                    "
-                    placeholder="Search"
-                />
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <div v-for="post in posts" :key="post._path" class="border border-primary rounded-xl p-2">
-                    <NuxtLink :to="post._path">
-                        <div class="text-light text-xl font-bold mb-2">
-                            {{ post.title }}
-                        </div>
-                        <nuxt-img
-                            class="shaddow-2xl mb-2"
-                            :src="
-                                'image' in post
-                                    ? `${post._path}/${post.image}`
-                                    : '/posts/default.png'
-                            "
-                            alt="Florian Bigot"
-                            height="100"
-                        />
-                        <div class="text-md text-light">
-                            {{ post.description }}
-                        </div>
-                    </NuxtLink>
-                </div>
-            </div>
+    <div
+        class="
+            flex flex-col gap-5 justify-center items-center
+            w-full min-h-screen px-5 py-20
+        "
+    >
+        <div class="flex">
+            <NuxtLink to="/" class="text-xl font-bold hover:underline">
+                Want to learn more about me?
+            </NuxtLink>
         </div>
-    </Screen>
+
+        <div class="flex flex-col">
+            <label
+                for="search"
+                class="font-bold text-lg"
+            >
+                Search
+            </label>
+            <input
+                id="search"
+                v-model="search"
+                type="text"
+                placeholder="Search"
+                class="
+                    shaddow appearance-none
+                    text-lg text-light-on-background
+                    border rounded w-full py-2 px-3
+                    focus:outline focus:outline-2
+                    focus:outline-offset-0
+                    focus:shadow-outline
+                    focus:outline-light-primary
+                    dark:focus:outline-dark-primary
+                "
+            />
+        </div>
+        
+        <div class="max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-3">
+            <NuxtLink
+                v-for="(post, index) in posts"
+                :key="post._path"
+                :to="post._path"
+                class="
+                    flex flex-col justify-around gap-2
+                    border border-light-primary
+                    dark:border-dark-primary
+                    rounded-xl p-2
+                "
+            >
+                <div class="text-xl font-bold">
+                    {{ post.title }}
+                </div>
+                <img
+                    :src="
+                        'image' in post
+                            ? `${post.image}`
+                            : '/posts/default.png'
+                    "
+                    :alt="post.title"
+                    class="shadow-2xl"
+                />
+            </NuxtLink>
+        </div>
+    </div>
 </template>
