@@ -37,6 +37,9 @@ export default defineNuxtConfig({
         { hid: 'og:image', name: 'og:image', content: 'https://florianbigot.com/florian.png' },
         { hid: 'og:image:alt', name: 'og:image:alt', content: 'Florian Bigot' },
       ],
+      htmlAttrs: {
+        lang: 'en',
+      },
     },
   },
 })
