@@ -25,6 +25,10 @@ export default defineNuxtConfig({
     classSuffix: ''
   },
 
+  image: {
+    dir: '.nuxt/content-assets/public',
+  },
+
   app: {
     head: {
       charset: 'utf-8',

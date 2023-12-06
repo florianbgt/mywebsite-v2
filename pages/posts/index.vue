@@ -76,14 +76,16 @@ await useAsyncData(async () => {
                 <div class="text-xl font-bold">
                     {{ post.title }}
                 </div>
-                <img
+                
+                <NuxtImg
+                    class="shaddow-2xl"
                     :src="
                         'image' in post
                             ? `${post.image}`
                             : '/posts/default.png'
                     "
                     :alt="post.title"
-                    class="shadow-2xl"
+                    width="600px"
                 />
             </NuxtLink>
         </div>

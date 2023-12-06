@@ -1,10 +1,10 @@
 <template>
-    <img
+    <NuxtImg
       :src="refinedSrc"
       :alt="alt"
       :width="width"
       :height="height"
-    >
+    />
 </template>
   
 <script setup lang="ts">
@@ -22,7 +22,7 @@
     },
     width: {
       type: [String, Number],
-      default: undefined
+      default: '1200px'
     },
     height: {
       type: [String, Number],

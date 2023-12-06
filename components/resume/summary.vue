@@ -48,7 +48,7 @@ const links = [
                     </NuxtLink>
                 </div>
             </div>
-            <nuxt-img
+            <NuxtImg
                 class="rounded-full shaddow-2xl"
                 src="/Florian.jpg"
                 alt="Florian Bigot"

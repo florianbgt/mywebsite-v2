@@ -11,14 +11,15 @@ const { data } = await useAsyncData(`post-${route.path}`, () => queryContent(rou
                 All posts
             </NuxtLink>
             <template v-if="data">
-                <img
-                    class="w-full h-[15rem] object-cover mt-5"
+                <NuxtImg
+                    class="h-[15rem] object-cover mt-5"
                     :src="
                         'image' in data
                             ? `${data.image}`
                             : '/posts/default.png'
                     "
                     alt="Florian Bigot"
+                    width="1200px"
                 />
                 <div class="text-3xl text-primary my-2">
                     {{ data.title }}
