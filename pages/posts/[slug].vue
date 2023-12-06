@@ -23,7 +23,7 @@ const { data } = await useAsyncData(`post-${route.path}`, () => queryContent(rou
                 <div class="text-3xl text-primary my-2">
                     {{ data.title }}
                 </div>
-                <ContentDoc class="prose"/>
+                <ContentDoc />
             </template>
             
         </div>

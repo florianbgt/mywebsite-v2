@@ -1,19 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-export default defineNuxtConfig({ 
-  extends: '@nuxt-themes/typography', 
+export default defineNuxtConfig({
+  extends: '@nuxt-themes/typography',
   devtools: { enabled: true },
   modules: [
-    '@nuxtjs/color-mode',
-    'nuxt-content-assets',
+    'nuxt-content-assets', // make sure to add before content!
     '@nuxt/content',
-    '@nuxt/image',
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/color-mode',
+    '@nuxt/image',
     'nuxt-icon',
   ],
-
-  colorMode: {
-    classSuffix: ''
-  },
 
   content: {    
     highlight: {
@@ -25,9 +21,8 @@ export default defineNuxtConfig({
       preload: ['bash', 'python', 'javascript', 'typescript', 'vue', 'tsx', 'jsx']
     },
   },
-  
-  tailwindcss: {
-    cssPath: '~/assets/css/tailwind.css',
-    configPath: 'tailwind.config.js',    
+
+  colorMode: {
+    classSuffix: ''
   },
 })
