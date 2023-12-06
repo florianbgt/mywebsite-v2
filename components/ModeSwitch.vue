@@ -19,7 +19,7 @@ const iconName = computed(() => {
 </script>
 
 <template>
-  <button @click="handleClick">
+  <button @click="handleClick" aria-label="light/dark mode">
     <Icon 
       :name="iconName" 
       size="2rem"

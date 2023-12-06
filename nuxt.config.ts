@@ -24,4 +24,19 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: ''
   },
+
+  app: {
+    head: {
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+      title: 'Florian Bigot',
+      meta: [
+        { hid: 'description', name: 'description', content: 'Personal website of Florian Bigot. A software engineer that can help you solving your problems.' },
+        { hid: 'og:title', name: 'og:title', content: 'Florian Bigot' },
+        { hid: 'og:description', name: 'og:description', content: 'Personal website of Florian Bigot. A software engineer that can help you solving your problems.' },
+        { hid: 'og:image', name: 'og:image', content: 'https://florianbigot.com/florian.png' },
+        { hid: 'og:image:alt', name: 'og:image:alt', content: 'Florian Bigot' },
+      ],
+    },
+  },
 })
