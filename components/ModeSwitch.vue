@@ -1,19 +1,20 @@
 <script setup lang="ts">
 const colorMode = useColorMode()
+const iconName = ref('')
 
 const handleClick = () => {
   if (colorMode.value === 'dark') {
-    colorMode.value = 'light'
+    colorMode.preference = 'light'
   } else {
-    colorMode.value = 'dark'
+    colorMode.preference = 'dark'
   }
 }
 
-const iconName = computed(() => {
-  if (colorMode.value === 'dark') {
-    return 'material-symbols:light-mode'
+watch(colorMode, () => {
+  if (colorMode.value === 'light') {
+    iconName.value = 'material-symbols:dark-mode'
   } else {
-    return 'material-symbols:dark-mode'
+    iconName.value = 'material-symbols:light-mode'
   }
 })
 </script>
@@ -21,6 +22,7 @@ const iconName = computed(() => {
 <template>
   <button aria-label="light/dark mode" @click="handleClick">
     <Icon
+      v-if="iconName"
       :name="iconName"
       size="2rem"
       class="text-light-primary dark:text-dark-primary"
