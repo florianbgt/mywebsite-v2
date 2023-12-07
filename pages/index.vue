@@ -2,7 +2,7 @@
 import Sumary from '@/components/resume/summary.vue'
 import Intro from '@/components/resume/intro.vue'
 import Skillsets from '@/components/resume/skillsets.vue'
-import Timeline from '~/components/resume/timeline.vue'
+import Timeline from '@/components/resume/timeline.vue'
 
 const components = [
   Sumary,
