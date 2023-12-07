@@ -7,10 +7,10 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
     '@nuxt/image',
-    'nuxt-icon',
+    'nuxt-icon'
   ],
 
-  content: {    
+  content: {
     highlight: {
       theme: {
         default: 'github-light',
@@ -18,7 +18,7 @@ export default defineNuxtConfig({
         light: 'github-light'
       },
       preload: ['bash', 'python', 'javascript', 'typescript', 'vue', 'tsx', 'jsx']
-    },
+    }
   },
 
   colorMode: {
@@ -26,7 +26,7 @@ export default defineNuxtConfig({
   },
 
   image: {
-    dir: '.nuxt/content-assets/public',
+    dir: '.nuxt/content-assets/public'
   },
 
   app: {
@@ -39,11 +39,11 @@ export default defineNuxtConfig({
         { hid: 'og:title', name: 'og:title', content: 'Florian Bigot' },
         { hid: 'og:description', name: 'og:description', content: 'Personal website of Florian Bigot. A software engineer that can help you solving your problems.' },
         { hid: 'og:image', name: 'og:image', content: 'https://florianbigot.com/florian.png' },
-        { hid: 'og:image:alt', name: 'og:image:alt', content: 'Florian Bigot' },
+        { hid: 'og:image:alt', name: 'og:image:alt', content: 'Florian Bigot' }
       ],
       htmlAttrs: {
-        lang: 'en',
-      },
-    },
-  },
+        lang: 'en'
+      }
+    }
+  }
 })

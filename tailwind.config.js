@@ -21,12 +21,11 @@ export default {
         'light-background': '#FFFBFE',
         'light-on-background': '#1C1B1F',
         'dark-background': '#1C1B1F',
-        'dark-on-background': '#E6E1E5',
+        'dark-on-background': '#E6E1E5'
       },
       fontFamily: {
-        roboto: ['Roboto', 'sans-serif'],
-      },
-    },
-  },
+        roboto: ['Roboto', 'sans-serif']
+      }
+    }
+  }
 }
-

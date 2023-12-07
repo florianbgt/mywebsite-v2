@@ -7,12 +7,17 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
     "@nuxt-themes/typography": "^1.0.1",
     "@nuxtjs/color-mode": "^3.3.2",
+    "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@nuxtjs/eslint-module": "^4.1.0",
     "@nuxtjs/tailwindcss": "^6.10.1",
+    "eslint": "^8.55.0",
     "nuxt": "3.6.5",
     "nuxt-icon": "^0.6.7",
     "vue": "^3.3.10",
