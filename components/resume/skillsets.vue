@@ -5,17 +5,24 @@ const skillsets = [
     skills: [
       'Python (Django, Flask)',
       'Golang',
-      'JS & TS (Express.js)',
-      'Redis',
-      'RabbitMQ'
+      'Node.js (Express)',
+      'RabbitMQ',
+      'Redis'
     ]
   },
   {
     title: 'Frontend',
     skills: [
-      'React.js, Next.js',
-      'Vue.js, Nuxt.js',
+      'Vue.js & Nuxt.js',
+      'React.js & Next.js',
       'React Native'
+    ]
+  },
+  {
+    title: 'Payments',
+    skills: [
+      'Stripe',
+      'Mollie'
     ]
   },
   {
@@ -23,19 +30,11 @@ const skillsets = [
     skills: [
       'Docker',
       'Kubernetes',
-      'k9s, kubectl',
       'Gitops',
-      'Firebase',
       'AWS',
+      'Firebase',
       'Sentry',
       'NewRelic'
-    ]
-  },
-  {
-    title: 'Payments',
-    skills: [
-      'Stripe (Payment, Payout, Connect)',
-      'Mollie (Payment)'
     ]
   }
 ]
