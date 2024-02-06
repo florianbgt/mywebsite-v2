@@ -31,7 +31,7 @@ await useAsyncData(async () => {
         "
   >
     <div class="flex">
-      <NuxtLink to="/" class="text-xl font-bold hover:underline">
+      <NuxtLink to="/" class="text-xl font-bold text-light-link dark:text-dark-link hover:underline">
         Want to learn more about me?
       </NuxtLink>
     </div>

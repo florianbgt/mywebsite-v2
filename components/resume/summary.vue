@@ -43,7 +43,7 @@ const links = [
       </div>
       <div class="text-lg mt-2">
         Check out
-        <NuxtLink to="/posts" class="text-xl font-bold hover:underline">
+        <NuxtLink to="/posts" class="text-xl font-bold text-light-link dark:text-dark-link hover:underline">
           My Posts
         </NuxtLink>
       </div>

@@ -5,6 +5,7 @@
         date?: string;
         where?: string;
         description?: string;
+        tasks?: Array<string>;
         link?: string;
     }
 
@@ -16,10 +17,13 @@ const events: Array<Event> = [
     where: 'Amsterdam, Netherlands',
     description: `
                 Develop all kind of new features in a complex kubernetes ecosystem of several microservices (Python and Golang) and a monolith application (Python) as well as several web and native applications (Vue.js, React native)
-                Diversify revenue source by designing and integrating a new microservice that handles secondary sale of tickets. Process KYCs, and payouts to multiple parties (end users, customers, customers of customers) in an async way using Stripe
-                Ensure future growth and business scale by implementing a dashboard to track the lifetime of tickets, orders, payments, refunds and payouts.
-                Onboard new employees and mentor junior developers
             `,
+    tasks: [
+      'Diversify revenue source by designing, developing and integrating a new microservice allowing secondary sale of tickets. Process payments, KYCs, and send payouts to multiple parties (end users, customers, customers of customers) using Stripe.',
+      'Create a resevation system into a complexe existing system allowing the sale of tickets through shops.',
+      'Onboard new employees and mentor junior developers.',
+      'Troubleshoot and hotfix production bugs, refactor existing codebase.'
+    ],
     link: 'https://get-protocol.com/'
   },
   {
@@ -28,11 +32,16 @@ const events: Array<Event> = [
     date: 'Jan 2019 to Dec 2021',
     where: 'Providence, RI, USA',
     description: `
-                Web applications development using Django REST APIs and Vue universal applications (SPA with PWA and SSR capabilities)
-                Extensive use of Docker from development to production
-                Conversion of windows based scientific computing libraries into a pluggable Linux container using Docker
-                Regular deployments and maintenance of a web applications on a Linux server
-            `,
+      Design and Develop a set of tools to automate the design, validation and report generation of mechanical components.
+      <br>
+      Cut down the development cost and time, and increased the quality of new products being developed.
+    `,
+    tasks: [
+      'Create a monolith API (Python) and Web application (Nuxt.js)',
+      'Conversion of windows based scientific computing libraries into a pluggable Linux container using Docker.',
+      'Extensive use of Docker from development to production.',
+      'Maintenance of a self hosted Linux server.'
+    ],
     link: 'https://www.hutchinson.com/'
   },
   {
@@ -88,11 +97,15 @@ const events: Array<Event> = [
         </div>
       </div>
 
-      <div v-if="event.description" class="text-wrap">
-        {{ event.description }}
-      </div>
+      <div v-if="event.description" class="text-wrap" v-html="event.description" />
 
-      <a v-if="event.link" :href="event.link" target="_blank" class="font-bold hover:underline">
+      <ul v-if="event.tasks" class="list-disc list-inside">
+        <li v-for="task in event.tasks" :key="task">
+          {{ task }}
+        </li>
+      </ul>
+
+      <a v-if="event.link" :href="event.link" target="_blank" class="font-bold text-light-link dark:text-dark-link hover:underline">
         {{ event.link }}
       </a>
     </div>
