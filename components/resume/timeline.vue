@@ -16,13 +16,18 @@ const events: Array<Event> = [
     date: 'Jan 2022 to present',
     where: 'Amsterdam, Netherlands',
     description: `
-                Develop all kind of new features in a complex kubernetes ecosystem of several microservices (Python and Golang) and a monolith application (Python) as well as several web and native applications (Vue.js, React native)
+                Developing all kind of new features in a complex kubernetes ecosystem of several microservices (Python and Golang) and a monolith application (Python) as well as several web and native applications (Vue.js, React native)
             `,
     tasks: [
-      'Diversify revenue source by designing, developing and integrating a new microservice allowing secondary sale of tickets. Process payments, KYCs, and send payouts to multiple parties (end users, customers, customers of customers) using Stripe.',
-      'Create a resevation system into a complexe existing system allowing the sale of tickets through shops.',
-      'Onboard new employees and mentor junior developers.',
-      'Troubleshoot and hotfix production bugs, refactor existing codebase.'
+      `
+        Diversifing revenue source by designing, developing and integrating a new microservice allowing secondary sale of tickets.
+        <br>
+        Process payments, KYCs, and send payouts to multiple parties (end users, customers, customers of customers) using Stripe.
+      `,
+      'Creating a resevation system into a complexe existing system allowing the sale of tickets through shops.',
+      'Expanding an existing dashboard, so our customers can track buyers orders and payments in real time instead of relying on daily generated csv reports.',
+      'Onboarding new employees and mentor junior developers.',
+      'Troubleshooting and hotfix production bugs, refactor existing codebase.'
     ],
     link: 'https://get-protocol.com/'
   },
@@ -32,15 +37,15 @@ const events: Array<Event> = [
     date: 'Jan 2019 to Dec 2021',
     where: 'Providence, RI, USA',
     description: `
-      Design and Develop a set of tools to automate the design, validation and report generation of mechanical components.
+      Designed and Developed a set of tools to automate the design, validation and report generation of mechanical components.
       <br>
       Cut down the development cost and time, and increased the quality of new products being developed.
     `,
     tasks: [
-      'Create a monolith API (Python) and Web application (Nuxt.js)',
-      'Conversion of windows based scientific computing libraries into a pluggable Linux container using Docker.',
-      'Extensive use of Docker from development to production.',
-      'Maintenance of a self hosted Linux server.'
+      'Created a monolith API (Python) and Web application (Nuxt.js)',
+      'Converted windows based scientific computing libraries into a pluggable Linux container using Docker.',
+      'Extensively used Docker from development to production.',
+      'Maintained a self hosted Linux server.'
     ],
     link: 'https://www.hutchinson.com/'
   },
@@ -48,9 +53,10 @@ const events: Array<Event> = [
     title: 'Mechanical Engineer',
     date: '2015 to 2021',
     description: `
-                Before I started my career as a software engineer, I worked as a mechanical engineer in the aerospace and automotive industry.
-                The project I worked on were mostly related to the design and validation of mechanical components and systems, and the development of scientific computing libraries.
-            `
+      I worked as a mechanical engineer in the aerospace and automotive industry before I persued my career as a software engineer.
+      <br> 
+      I worked on projects related to the design and validation of mechanical components and systems, and developed scientific computing libraries.
+    `
   },
   {
     title: 'MsC in Mechanical Engineering',
