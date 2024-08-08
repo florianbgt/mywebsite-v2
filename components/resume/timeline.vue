@@ -11,13 +11,27 @@
 
 const events: Array<Event> = [
   {
-    title: 'Fullstack Developer',
-    entityName: 'GET Protocol',
-    date: 'Jan 2022 to present',
+    title: 'Founder & CTO',
+    entityName: 'NanoAPI',
+    date: 'Jan 2023 to present',
     where: 'Amsterdam, Netherlands',
     description: `
-                Developing all kind of new features in a complex kubernetes ecosystem of several microservices (Python and Golang) and a monolith application (Python) as well as several web and native applications (Vue.js, React native)
-            `,
+      Provide company with a plug and play infrastructure that deploy and scale their software in an efficient, secure and cost effective manner.
+      <br>
+      Are you struggling handling high load on your software? Wanna reduce your cloud bill? 
+      <br>
+      We can help you! Feel free to get in touch with us.
+    `,
+    link: 'https://nanoapi.io/'
+  },
+  {
+    title: 'Fullstack Developer',
+    entityName: 'GET Protocol',
+    date: 'Jan 2022 to Jul 2022',
+    where: 'Amsterdam, Netherlands',
+    description: `
+      Developing all kind of new features in a complex kubernetes ecosystem of several microservices (Python and Golang) and a monolith application (Python) as well as several web and native applications (Vue.js, React native)
+    `,
     tasks: [
       `
         Diversifing revenue source by designing, developing and integrating a new microservice allowing secondary sale of tickets.
@@ -27,7 +41,7 @@ const events: Array<Event> = [
       'Creating a resevation system into a complexe existing system allowing the sale of tickets through shops.',
       'Expanding an existing dashboard, so our customers can track buyers orders and payments in real time instead of relying on daily generated csv reports.',
       'Onboarding new employees and mentor junior developers.',
-      'Troubleshooting and hotfix production bugs, refactor existing codebase.'
+      'Troubleshooting and hotfix production bugs, improve infrastructure, refactor existing codebase.'
     ],
     link: 'https://get-protocol.com/'
   },
@@ -86,7 +100,7 @@ const events: Array<Event> = [
             {{ event.title }}
           </span>
           <template v-if="event.entityName">
-            at {{ event.entityName }}
+            @ {{ event.entityName }}
           </template>
         </div>
         <div

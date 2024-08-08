@@ -3,26 +3,14 @@ const skillsets = [
   {
     title: 'Backend',
     skills: [
-      'Python (Django, Flask)',
       'Golang',
-      'Node.js (Express)',
+      'Python',
+      'Node.js',
       'RabbitMQ',
-      'Redis'
-    ]
-  },
-  {
-    title: 'Frontend',
-    skills: [
-      'Vue.js & Nuxt.js',
-      'React.js & Next.js',
-      'React Native'
-    ]
-  },
-  {
-    title: 'Payments',
-    skills: [
-      'Stripe',
-      'Mollie'
+      'Redis',
+      'PostgreSQL',
+      'MongoDB',
+      'CouchDB',
     ]
   },
   {
@@ -30,13 +18,33 @@ const skillsets = [
     skills: [
       'Docker',
       'Kubernetes',
+      'Pulumi',
+      'Argocd',
       'Gitops',
       'AWS',
-      'Firebase',
+      'Azure',
+      'Google Cloud',
       'Sentry',
       'NewRelic'
     ]
-  }
+  },
+  {
+    title: 'Frontend',
+    skills: [
+      'React.js',
+      'React Native',
+      'Next.js',
+      'Vue.js',
+      'Nuxt.js',
+    ]
+  },
+  {
+    title: 'Other',
+    skills: [
+      'Stripe',
+      'Mollie'
+    ]
+  },
 ]
 </script>
 
@@ -56,10 +64,7 @@ const skillsets = [
           :key="skill"
           class="text-lg"
         >
-          <div v-if="skillIndex > 0">
-            -
-          </div>
-          <div>
+          <div class="mr-2">
             {{ skill }}
           </div>
         </template>
