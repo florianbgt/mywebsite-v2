@@ -48,7 +48,7 @@ const events: Array<Event> = [
   {
     title: 'Product development engineer',
     entityName: 'Hutchinson',
-    date: 'Jan 2019 to Dec 2021',
+    date: 'Jan 2019 to Jan 2022',
     where: 'Providence, RI, USA',
     description: `
       Designed and Developed a set of tools to automate the design, validation and report generation of mechanical components.
@@ -65,7 +65,7 @@ const events: Array<Event> = [
   },
   {
     title: 'Mechanical Engineer',
-    date: '2015 to 2021',
+    date: '2015 to 2019',
     description: `
       I worked as a mechanical engineer in the aerospace and automotive industry before I persued my career as a software engineer.
       <br> 
