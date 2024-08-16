@@ -64,12 +64,10 @@ const events: Array<Event> = [
     link: 'https://www.hutchinson.com/'
   },
   {
-    title: 'Mechanical Engineer',
+    title: 'Engineer',
     date: '2015 to 2019',
     description: `
-      I worked as a mechanical engineer in the aerospace and automotive industry before I persued my career as a software engineer.
-      <br> 
-      I worked on projects related to the design and validation of mechanical components and systems, and developed scientific computing libraries.
+      Various positions in the automotive and aerospace industry as an engineer (scientific computing, design, product validation, application).
     `
   },
   {
