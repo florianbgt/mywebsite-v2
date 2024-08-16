@@ -27,7 +27,7 @@ const events: Array<Event> = [
   {
     title: 'Fullstack Developer',
     entityName: 'GET Protocol',
-    date: 'Jan 2022 to Jul 2022',
+    date: 'Jan 2022 to Jul 2024',
     where: 'Amsterdam, Netherlands',
     description: `
       Developing all kind of new features in a complex kubernetes ecosystem of several microservices (Python and Golang) and a monolith application (Python) as well as several web and native applications (Vue.js, React native)
