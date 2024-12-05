@@ -1,50 +1,90 @@
 <script setup lang="ts">
 const skillsets = [
   {
-    title: 'Backend',
+    title: 'Backend Development',
     skills: [
       'Golang',
       'Python',
-      'Node.js',
+      'Javascript/Typescript',
       'RabbitMQ',
       'Redis',
       'PostgreSQL',
       'MongoDB',
-      'CouchDB',
+      'CouchDB'
     ]
   },
   {
-    title: 'Ops',
+    title: 'DevOps & Cloud Infrastructure',
     skills: [
-      'Docker',
-      'Kubernetes',
+      'Docker & Kubernetes',
+      'GitOps',
       'Pulumi',
-      'Argocd',
-      'Gitops',
+      'ArgoCD',
       'AWS',
       'Azure',
       'Google Cloud',
       'Sentry',
-      'NewRelic'
+      'New Relic'
     ]
   },
   {
-    title: 'Frontend',
+    title: 'Frontend Development',
     skills: [
       'React.js',
-      'React Native',
       'Next.js',
+      'React Native',
       'Vue.js',
       'Nuxt.js',
+      'Tailwind CSS'
     ]
   },
   {
-    title: 'Other',
+    title: 'Product Management & UX/UI Design',
     skills: [
-      'Stripe',
-      'Mollie'
+      'Product Strategy Development',
+      'Roadmap Planning',
+      'User Research',
+      'Wireframing & Prototyping',
+      'Usability Testing',
+      'Design Thinking',
+      'Figma',
+      'Sketch'
     ]
   },
+  {
+    title: 'Sales & Customer Discovery',
+    skills: [
+      'Customer Discovery',
+      'Customer Relationship Management',
+      'Market Research',
+      'Lead Generation',
+      'Negotiation Skills',
+      'Client Engagement'
+    ]
+  },
+  {
+    title: 'Team Leadership & Management',
+    skills: [
+      'Team Leadership',
+      'Mentorship',
+      'Cross-Functional Team Collaboration',
+      'Agile Methodologies',
+      'Project Management',
+      'Conflict Resolution',
+      'Performance Monitoring',
+      'Resource Allocation'
+    ]
+  },
+  {
+    title: 'Expertise',
+    skills: [
+      'API Design',
+      'Microservices Architecture',
+      'Code Splitting Tools',
+      'Legacy Code Refactoring',
+      'Technical Debt Management'
+    ]
+  }
 ]
 </script>
 

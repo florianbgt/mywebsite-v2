@@ -29,13 +29,11 @@ const links = [
       <div class="text-4xl mb-2">
         Hi, I'm
         <span class="text-light-primary dark:text-dark-primary font-bold">Florian</span>
+        Founder & CTO of
+        <span class="text-light-primary dark:text-dark-primary font-bold">NanoAPI</span>
       </div>
       <div class="text-xl">
-        <s>Software Engineer</s>
-        Problem Solver
-      </div>
-      <div class="text-light-primary dark:text-dark-primary text-xl">
-        Python | Golang | Javascript/Typescript
+        We empower developers to modernize legacy software through our code visibility and refactoring tools.
       </div>
       <div class="text-md">
         Living in Amsterdam

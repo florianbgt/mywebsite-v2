@@ -13,53 +13,70 @@ const events: Array<Event> = [
   {
     title: 'Founder & CTO',
     entityName: 'NanoAPI',
-    date: 'Jan 2023 to present',
+    date: 'Jan 2023 to Present',
     where: 'Amsterdam, Netherlands',
     description: `
-      Provide company with a plug and play infrastructure that deploy and scale their software in an efficient, secure and cost effective manner.
-      <br>
-      Are you struggling handling high load on your software? Wanna reduce your cloud bill? 
-      <br>
-      We can help you! Feel free to get in touch with us.
+      As the Founder and Chief Technology Officer of NanoAPI, I lead the development of a command-line interface (CLI) tool designed to help businesses modernize their legacy software systems. Our tool enables the transformation of monolithic codebases into modular microservices, enhancing code visibility and facilitating continuous improvement without disrupting existing workflows.
     `,
+    tasks: [
+      'Directed the creation of NanoAPI\'s CLI tool, empowering developers to efficiently refactor monolithic architectures into microservices.',
+      'Collaborated closely with clients to understand their specific challenges, ensuring our tool effectively addresses their needs and adds substantial value.',
+      'Assembled and mentored a diverse team of engineers, fostering a culture of innovation and excellence that propels our mission forward.',
+      'Implemented solutions that reduced clients\' cloud infrastructure costs and enhanced software reliability under high-load conditions.',
+      'Secured participation in the Techstars Berlin 2024 cohort, gaining valuable mentorship and resources to accelerate NanoAPI\'s growth.'
+    ],
     link: 'https://nanoapi.io/'
   },
   {
-    title: 'Fullstack Developer',
-    entityName: 'GET Protocol',
-    date: 'Jan 2022 to Jul 2024',
-    where: 'Amsterdam, Netherlands',
+    title: 'Participant',
+    entityName: 'Techstars',
+    date: 'Sep 2024 to Dec 2024',
+    where: 'Berlin, Germany',
     description: `
-      Developing all kind of new features in a complex kubernetes ecosystem of several microservices (Python and Golang) and a monolith application (Python) as well as several web and native applications (Vue.js, React native)
+      NanoAPI was selected as one of 12 startups from over 6,000 applicants across Europe to join the Techstars Berlin 2024 Accelerator Program. During this intensive program, I engaged in activities that significantly advanced our company's development.
     `,
     tasks: [
-      `
-        Diversifing revenue source by designing, developing and integrating a new microservice allowing secondary sale of tickets.
-        <br>
-        Process payments, KYCs, and send payouts to multiple parties (end users, customers, customers of customers) using Stripe.
-      `,
-      'Creating a resevation system into a complexe existing system allowing the sale of tickets through shops.',
-      'Expanding an existing dashboard, so our customers can track buyers orders and payments in real time instead of relying on daily generated csv reports.',
-      'Onboarding new employees and mentor junior developers.',
-      'Troubleshooting and hotfix production bugs, improve infrastructure, refactor existing codebase.'
+      'Collaborated with experienced mentors to refine NanoAPI\'s business model and product strategy.',
+      'Conducted extensive market research to confirm product-market fit and identify growth opportunities.',
+      'Developed and presented pitches to potential investors, enhancing fundraising skills and expanding our network.',
+      'Participated in workshops focused on scaling operations, team building, and leadership development.'
+    ],
+    link: 'https://www.techstars.com/'
+  },
+  {
+    title: 'Full Stack Developer',
+    entityName: 'GET Protocol Foundation',
+    date: 'Feb 2022 to Jul 2024',
+    where: 'Amsterdam, Netherlands',
+    description: `
+      At GET Protocol Foundation, I contributed to the development of a complex Kubernetes ecosystem comprising multiple microservices (Python and Golang), a monolithic application (Python), and various web and native applications (Vue.js, React Native).
+    `,
+    tasks: [
+      'Collaborated with Product and UX/UI teams to design and implement a microservice enabling secondary ticket sales, integrating payment processing, KYC procedures, and multi-party payouts via Stripe.',
+      'Worked closely with cross-functional teams to create a reservation system within an existing infrastructure, facilitating ticket sales through retail outlets.',
+      'Partnered with UX/UI designers to expand the customer dashboard, providing real-time tracking of orders and payments, thereby eliminating dependence on daily CSV reports.',
+      'Assisted in onboarding new employees and mentored junior developers, fostering a collaborative and growth-oriented environment.',
+      'Addressed production bugs and refactored legacy codebases to improve system stability and performance.'
     ],
     link: 'https://get-protocol.com/'
   },
   {
-    title: 'Product development engineer',
+    title: 'Web Developer & Product Development Engineer',
     entityName: 'Hutchinson',
     date: 'Jan 2019 to Jan 2022',
-    where: 'Providence, RI, USA',
+    where: 'Danielson, Connecticut, USA',
     description: `
-      Designed and Developed a set of tools to automate the design, validation and report generation of mechanical components.
-      <br>
-      Cut down the development cost and time, and increased the quality of new products being developed.
+      At Hutchinson, I combined my software development skills with engineering expertise to create tools and solutions that streamlined product development and manufacturing processes.
     `,
     tasks: [
-      'Created a monolith API (Python) and Web application (Nuxt.js)',
-      'Converted windows based scientific computing libraries into a pluggable Linux container using Docker.',
-      'Extensively used Docker from development to production.',
-      'Maintained a self hosted Linux server.'
+      'Designed and built tools to automate the design, validation, and report generation of mechanical components, reducing development costs and time while improving the quality of new products.',
+      'Created a monolithic API (Python) and a web application (Nuxt.js) to support engineering teams.',
+      'Converted Windows-based scientific computing libraries into pluggable Linux containers using Docker, enhancing portability and scalability.',
+      'Extensively used Docker for both development and production environments.',
+      'Maintained a self-hosted Linux server to support internal tools.',
+      'Adapted and integrated standard design solutions from France to meet U.S. customer requirements.',
+      'Implemented additive manufacturing techniques (FDM 3D printing) to lower costs and accelerate prototyping for internal and customer use.',
+      'Managed the design, validation, and sourcing of components for non-standard product development.'
     ],
     link: 'https://www.hutchinson.com/'
   },
