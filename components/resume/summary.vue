@@ -14,12 +14,12 @@ const links = [
     href: 'mailto:florian.bigot321@gmail.com',
     icon: 'grommet-icons:mail',
     text: 'florian.bigot321@gmail.com'
-  },
-  {
-    href: '/Resume_Florian_Bigot.pdf',
-    icon: 'grommet-icons:document',
-    text: 'My PDF resume'
   }
+  // {
+  //   href: '/Resume_Florian_Bigot.pdf',
+  //   icon: 'grommet-icons:document',
+  //   text: 'My PDF resume'
+  // }
 ]
 </script>
 
